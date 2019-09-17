@@ -1,8 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
+<prism:PrismApplication
+    xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PainelStudioPerboyre.App">
-    <Application.Resources>
+    <prism:PrismApplication.Resources>
+        <ResourceDictionary>
+            <!--General Colors-->
+            <Color x:Key="MainColor">#ff3b77</Color>
+            <Color x:Key="FontColor">#52656b</Color>
+            <Color x:Key="AccentColor1">#cdff00</Color>
+            <Color x:Key="AccentColor2">#b8b89f</Color>
+            <Color x:Key="BackgroundColor">#f9f9f9</Color>
+            <!--Menu Colors-->
+            <Color x:Key="MenuColor">#a2b4cb</Color>
+            <Color x:Key="MenuFontColor">#405f7e</Color>
+            <Style TargetType="NavigationPage">
 
-    </Application.Resources>
-</Application>
+                <Setter Property="BarTextColor" Value="#FFFFFF" />
+                <Setter Property="BarBackgroundColor" Value="#4c0507"/>
+
+            </Style>
+
+            <!--Fonts-->
+        </ResourceDictionary>
+    </prism:PrismApplication.Resources>
+</prism:PrismApplication>
