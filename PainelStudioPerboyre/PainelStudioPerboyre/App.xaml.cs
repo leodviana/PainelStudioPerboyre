@@ -12,6 +12,7 @@ using Xamarin.Essentials;
 using PainelStudioPerboyre.Services;
 using PainelStudioPerboyre.ViewModels;
 using PainelStudioPerboyre.Views;
+using System.Net;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace PainelStudioPerboyre
@@ -40,8 +41,11 @@ namespace PainelStudioPerboyre
 
         protected override async void OnInitialized()
         {
+           
             InitializeComponent();
-
+#if DEBUG
+            HotReloader.Current.Run(this);
+#endif
             FlowListView.Init();
             // await NavigationService.NavigateAsync("NavigationPage/MainPage");
             //  await this.NavigationService.NavigateAsync("/MasterPage/NavigationPage/DentistaPage");

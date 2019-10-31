@@ -13,7 +13,7 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="{OnPlatform Android=30, iOS=50}"/>
+                <RowDefinition Height="{OnPlatform Android=20, iOS=50}"/>
                 <RowDefinition Height="200"/>
                 <RowDefinition Height="1"/>
                 <RowDefinition Height="*"/>
@@ -23,38 +23,44 @@
             
 
             <StackLayout Grid.Row="3" Margin="10,0,10,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0,30,20,0">
-                <Grid RowSpacing="20">
+                <Grid RowSpacing="20" BackgroundColor="white">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="20"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="{OnPlatform Android=20, iOS=40}"/>
+                        <RowDefinition Height="Auto"/>  
+                        <RowDefinition Height="Auto"/> 
+                        <RowDefinition Height="Auto"/>  
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <ffimageloading:CachedImage  VerticalOptions="Center" HorizontalOptions="Start"  
-                            Aspect="AspectFit" Source="Email36.png">
+                            Aspect="AspectFit" Source="Email36.png" Grid.Row="1" Grid.Column="0">
                     </ffimageloading:CachedImage>
                     
-                    <Entry Text="{Binding Usuarioid,Mode=TwoWay}" Placeholder="Email"  HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="1"></Entry>
-                    <ffimageloading:CachedImage  VerticalOptions="Center" HorizontalOptions="Start"  
-                            Aspect="AspectFit" Source="password36.png" Grid.Column="0" Grid.Row="1">
-                    </ffimageloading:CachedImage>
+                    <Entry Text="{Binding Usuarioid,Mode=TwoWay}" Placeholder="Email"  HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="1"></Entry>
+                    
 
-                    <Entry Placeholder="Senha" Text="{Binding Senha,Mode=TwoWay}" IsPassword="True" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="1"></Entry>
-                    <Button Text="Login" Margin="10,0,0,10" Command="{Binding navegar}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BorderRadius = "20" BackgroundColor="#4c0507" TextColor="White" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" ></Button>
-                    <Label Text="Perfil Paciente" VerticalOptions="FillAndExpand" HorizontalOptions="Center" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" TextColor="#4c0507">
+                    <ffimageloading:CachedImage  VerticalOptions="Center" HorizontalOptions="Start"  
+                            Aspect="AspectFit" Source="password36.png" Grid.Column="0" Grid.Row="2">
+                    </ffimageloading:CachedImage>
+                    
+                    <Entry Placeholder="Senha" Text="{Binding Senha,Mode=TwoWay}" IsPassword="True" HorizontalOptions="FillAndExpand" Grid.Row="2" Grid.Column="1"></Entry>
+                    
+                    
+                    <Button Text="Login" Margin="10,0,0,10" Command="{Binding navegar}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BorderRadius = "20" BackgroundColor="#4c0507" TextColor="White" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" ></Button>
+                    
+                    <Label Text="Perfil Paciente" VerticalOptions="FillAndExpand" HorizontalOptions="Center" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" TextColor="#4c0507">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
                         </Label.GestureRecognizers>
                     </Label>
 
-                    <Label IsVisible="{Binding mostra_mensagem}" Text="{Binding mensagem}" TextColor="Red" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"></Label>
+                    
+
                     <ActivityIndicator IsRunning="{Binding IsRunning}" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2">
 
                     </ActivityIndicator>
