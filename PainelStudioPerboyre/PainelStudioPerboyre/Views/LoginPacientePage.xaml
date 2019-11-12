@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="PainelStudioPerboyre.Views.LoginPacientePage">
+
+
+
+    <ScrollView>
+        <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#ffffff" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Image Source="logo02.png" Aspect="AspectFit" Grid.Row="1"></Image>
+
+
+            <StackLayout Grid.Row="3" Margin="10,0,10,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0,30,20,0">
+                <Grid RowSpacing="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ffimageloading:CachedImage  VerticalOptions="Center" HorizontalOptions="Start" DownsampleToViewSize="true" 
+                            Aspect="AspectFit" Source="Email36.png">
+                    </ffimageloading:CachedImage>
+                    <Entry Text="{Binding Usuarioid,Mode=TwoWay}" Placeholder="Email"  HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="1"></Entry>
+                    <ffimageloading:CachedImage  VerticalOptions="Center" HorizontalOptions="Start" DownsampleToViewSize="true" 
+                            Aspect="AspectFit" Source="password36.png" Grid.Column="0" Grid.Row="1">
+                    </ffimageloading:CachedImage>
+
+                    <Entry Placeholder="Senha" Text="{Binding Senha,Mode=TwoWay}" IsPassword="True" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="1"></Entry>
+                    <Button Text="Login" Margin="10,0,0,10" Command="{Binding navegar}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BorderRadius = "30" BackgroundColor="#4c0507" TextColor="White" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" ></Button>
+                    <Label Text="Perfil Dentista" VerticalOptions="FillAndExpand" HorizontalOptions="Center" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" TextColor="#4c0507">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <ActivityIndicator IsRunning="{Binding IsRunning}" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2">
+
+                    </ActivityIndicator>
+
+                </Grid>
+
+            </StackLayout>
+            <Frame  Grid.Row="4" BackgroundColor="#4c0507"></Frame>
+
+
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

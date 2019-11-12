@@ -117,7 +117,7 @@ namespace PainelStudioPerboyre.ViewModels
 
         private async void Login()
         {
-
+            var testa = await ChecapermisaoService.checa_permissao();
             if (string.IsNullOrEmpty(Usuarioid))
             {
                 await PageDialogService.DisplayAlertAsync("Erro", "Prencha o campo Email!", "OK");

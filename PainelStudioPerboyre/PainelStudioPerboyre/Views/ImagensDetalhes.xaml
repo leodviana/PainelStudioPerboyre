@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:local="clr-namespace:PainelStudioPerboyre"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="PainelStudioPerboyre.Views.ImagensDetalhes"
+             Title="Detalhes">
+
+    
+    <StackLayout Padding="10,40,10,10" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand">
+        <ScrollView>
+
+            <local:PinchToZoomContainer HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                <local:PinchToZoomContainer.Content>
+                    <ffimageloading:CachedImage VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  DownsampleToViewSize="true"
+                    Aspect="AspectFit" HeightRequest="400" WidthRequest="400" Source="{Binding nome_arquivo_completo}"
+                     LoadingPlaceholder = "Spinner.gif" DownsampleWidth="100" DownsampleHeight="100">
+
+                    </ffimageloading:CachedImage>
+                </local:PinchToZoomContainer.Content>
+            </local:PinchToZoomContainer>
+
+        </ScrollView>
+    </StackLayout>
+
+</ContentPage>

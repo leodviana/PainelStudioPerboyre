@@ -1,18 +1,16 @@
 ﻿using DLToolkit.Forms.Controls;
 using Newtonsoft.Json;
 using PainelStudioPerboyre.Models;
+using PainelStudioPerboyre.Services;
+using PainelStudioPerboyre.ViewModels;
+using PainelStudioPerboyre.Views;
 using Prism;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Navigation;
-using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Xamarin.Essentials;
-using PainelStudioPerboyre.Services;
-using PainelStudioPerboyre.ViewModels;
-using PainelStudioPerboyre.Views;
-using System.Net;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace PainelStudioPerboyre
@@ -41,18 +39,20 @@ namespace PainelStudioPerboyre
 
         protected override async void OnInitialized()
         {
-           
+
             InitializeComponent();
 #if DEBUG
             HotReloader.Current.Run(this);
 #endif
             FlowListView.Init();
+            
+           
             // await NavigationService.NavigateAsync("NavigationPage/MainPage");
             //  await this.NavigationService.NavigateAsync("/MasterPage/NavigationPage/DentistaPage");
             // await this.NavigationService.NavigateAsync("/LoginPage");
             // await NavigationService.NavigateAsync("/NavigationPage/PermissaoPage"); nao da certo pois nao inicializa a master page 
             //await NavigationService.NavigateAsync("app:////NavigationPage/PermissaoPage");
-            string usuario_logado = Preferences.Get("dentistaserializado","");
+            string usuario_logado = Preferences.Get("dentistaserializado", "");
             App.usuariologado = JsonConvert.DeserializeObject<Dentista>(usuario_logado);
 
             if (App.usuariologado == null)
@@ -89,10 +89,10 @@ namespace PainelStudioPerboyre
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            
+
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
-            /*containerRegistry.RegisterForNavigation<MasterPage>();
+            containerRegistry.RegisterForNavigation<MasterPage>();
             containerRegistry.RegisterForNavigation<MenuPage>();
             containerRegistry.RegisterForNavigation<ExamesPage>();
             containerRegistry.RegisterForNavigation<PerfilPage>();
@@ -102,15 +102,15 @@ namespace PainelStudioPerboyre
             containerRegistry.RegisterForNavigation<Imagens>();
             containerRegistry.RegisterForNavigation<ImagensDetalhes>();
             containerRegistry.RegisterForNavigation<ImagensDetalhes2>();
-            containerRegistry.RegisterForNavigation<DentistaPage>();*/
-            containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
-            /* containerRegistry.RegisterForNavigation<PermissaoPage, PermissaoPageViewModel>();
-             containerRegistry.RegisterForNavigation<RecuperarPage, RecuperarPageViewModel>();
-             containerRegistry.RegisterForNavigation<LoginPacientePage, LoginPacientePageViewModel>();
-             containerRegistry.RegisterForNavigation<ExamesTab, ExamesTabViewModel>();
-             containerRegistry.RegisterForNavigation<PdfPage, PdfPageViewModel>();
-             containerRegistry.RegisterForNavigation<ExibePdfPage, ExibePdfPageViewModel>();
-             */
+            containerRegistry.RegisterForNavigation<DentistaPage>(); 
+             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+            containerRegistry.RegisterForNavigation<PermissaoPage, PermissaoPageViewModel>();
+            containerRegistry.RegisterForNavigation<RecuperarPage, RecuperarPageViewModel>();
+            containerRegistry.RegisterForNavigation<LoginPacientePage, LoginPacientePageViewModel>();
+            containerRegistry.RegisterForNavigation<ExamesTab, ExamesTabViewModel>();
+            containerRegistry.RegisterForNavigation<PdfPage, PdfPageViewModel>();
+            containerRegistry.RegisterForNavigation<ExibePdfPage, ExibePdfPageViewModel>();
+
 
             containerRegistry.RegisterSingleton<IApiService, ApiService>();
         }

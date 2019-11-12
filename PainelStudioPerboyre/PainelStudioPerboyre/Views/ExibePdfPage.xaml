@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:pdfViewerSample="clr-namespace:PainelStudioPerboyre.Custom_Controls"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="PainelStudioPerboyre.Views.ExibePdfPage"
+             Title="{Binding NomeArquivoSem}">
+
+
+    <Grid VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <pdfViewerSample:PdfView Grid.Row="0" x:Name="PdfDocView" VerticalOptions="FillAndExpand" Uri="{Binding NomeArquivo}" />
+        <ActivityIndicator Grid.Row="0" Grid.RowSpan="2" x:Name="BusyIndicator" HorizontalOptions="Center" VerticalOptions="Center"/>
+    </Grid>
+</ContentPage>
