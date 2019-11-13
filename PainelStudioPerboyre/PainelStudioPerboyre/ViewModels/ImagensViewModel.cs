@@ -102,6 +102,7 @@ namespace PainelStudioPerboyre.ViewModels
             }
         }
 
+
        
         public ObservableCollection<ArqImagens> _imgs;
         public ObservableCollection<ArqImagens> imgs
@@ -114,11 +115,11 @@ namespace PainelStudioPerboyre.ViewModels
 
             }
         }
-
+        
 
         public ImagensViewModel(INavigationService navigationService, IPageDialogService pageDialogService, IApiService ApiService) : base(navigationService, pageDialogService)
         {
-             //imgs = new ObservableCollection<ArqImagens>();
+             imgs = new ObservableCollection<ArqImagens>();
             //  Lista = new List<ArqImagens>();
             //_paciente = new paciente();
             apiService = ApiService;
@@ -161,6 +162,7 @@ namespace PainelStudioPerboyre.ViewModels
             }
             try
             {
+                
                 var Lista = await apiService.getExames(_paciente);
                 if (Lista == null)
                 {
@@ -403,6 +405,7 @@ namespace PainelStudioPerboyre.ViewModels
             _paciente = (paciente)parameters["paciente"];
             titulo = _paciente.nome;
             //    if (Lista.Count <= 0)
+            imgs.Clear();
             await GetExames();
             /* _paciente = (paciente)parameters["paciente"];
              if (Lista.Count<=0)

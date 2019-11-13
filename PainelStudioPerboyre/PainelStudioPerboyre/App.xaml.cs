@@ -103,7 +103,7 @@ namespace PainelStudioPerboyre
             containerRegistry.RegisterForNavigation<ImagensDetalhes>();
             containerRegistry.RegisterForNavigation<ImagensDetalhes2>();
             containerRegistry.RegisterForNavigation<DentistaPage>(); 
-             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+            containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<PermissaoPage, PermissaoPageViewModel>();
             containerRegistry.RegisterForNavigation<RecuperarPage, RecuperarPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPacientePage, LoginPacientePageViewModel>();

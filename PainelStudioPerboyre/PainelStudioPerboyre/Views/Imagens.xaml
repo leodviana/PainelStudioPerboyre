@@ -42,7 +42,7 @@
                                             <BoxView  Color="LightGray" HeightRequest="2" HorizontalOptions="FillAndExpand" ></BoxView>
                                             <ffimageloading:CachedImage  CacheDuration="50" RetryCount="3" RetryDelay="600"  HorizontalOptions="CenterAndExpand" DownsampleToViewSize="true"
                                    Aspect="AspectFit" HeightRequest="300" WidthRequest="300" Source="{Binding nome_arquivo_completo}" 
-                                   LoadingPlaceholder = "Spinner.gif" DownsampleWidth="100" DownsampleHeight="100" Margin="20,20,20,10">
+                                   LoadingPlaceholder = "Spinner.gif" DownsampleWidth="100" DownsampleHeight="100" Margin="20,20,20,10" CacheType="Memory">
                                                 <ffimageloading:CachedImage.GestureRecognizers>
                                                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Path=BindingContext.SelecionarItem, Source={x:Reference ListViewExames}}" CommandParameter="{Binding .}">
 
