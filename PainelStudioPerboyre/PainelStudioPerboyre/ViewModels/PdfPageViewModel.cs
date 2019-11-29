@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace PainelStudioPerboyre.ViewModels
 {
-    public class PdfPageViewModel : ViewModelBase
+    public class PdfPageViewModel : ViewModelBase, IInitialize
     {
         IApiService apiService;
         private bool isRunning;
@@ -104,8 +104,7 @@ namespace PainelStudioPerboyre.ViewModels
 
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
-            _paciente = (paciente)parameters["paciente"];
-            GetExames();
+           
 
         }
 
@@ -242,6 +241,12 @@ namespace PainelStudioPerboyre.ViewModels
             });
 
 
+        }
+
+        public void Initialize(INavigationParameters parameters)
+        {
+            _paciente = (paciente)parameters["paciente"];
+            GetExames();
         }
     }
 }

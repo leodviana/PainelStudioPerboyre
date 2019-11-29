@@ -11,7 +11,8 @@ namespace PainelStudioPerboyre.Views
 
         private void LstPacientes_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            LstPacientes.SelectedItem = null;
+            
+              LstPacientes.SelectedItem = null;
         }
         
     }

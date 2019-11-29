@@ -133,7 +133,7 @@ namespace PainelStudioPerboyre.ViewModels
         public PerfilPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService, IApiService ApiService) : base(navigationService, pageDialogService)
         {
             
-            apiService = new ApiService();
+            apiService = ApiService;
           //  imageArray = null;
         }
 

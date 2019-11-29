@@ -167,7 +167,8 @@ namespace PainelStudioPerboyre.ViewModels
                 App.usuariologado = User;
 
                 //Settings.Grava_Settings(JsonConvert.SerializeObject(User));
-                Preferences.Get("dentistaserializado", JsonConvert.SerializeObject(User));
+                Preferences.Set("dentistaserializado", JsonConvert.SerializeObject(User));
+                //Preferences.Get("dentistaserializado", JsonConvert.SerializeObject(User));
                 await NavigationService.NavigateAsync("/MasterPage/NavigationPage/DentistaPage");
             }
             else
@@ -175,7 +176,8 @@ namespace PainelStudioPerboyre.ViewModels
                 User.tipo = "Dentista";
                 App.usuariologado = User;
                 // Settings.Grava_Settings(JsonConvert.SerializeObject(User));
-                Preferences.Get("dentistaserializado", JsonConvert.SerializeObject(User));
+                Preferences.Set("dentistaserializado", JsonConvert.SerializeObject(User));
+                //Preferences.Get("dentistaserializado", JsonConvert.SerializeObject(User));
                 var navigationParams = new NavigationParameters();
                 navigationParams.Add("paciente", User);
                 await NavigationService.NavigateAsync("/MasterPage/NavigationPage/DentistaPage");
