@@ -5,8 +5,8 @@
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="PainelStudioPerboyre.Views.PdfPage"
-             Title="PDFS"
-             Icon="perfil">
+             Title="PDF"
+             Icon="perfil - Copia" >
     <ContentPage.Resources>
         <ResourceDictionary>
 

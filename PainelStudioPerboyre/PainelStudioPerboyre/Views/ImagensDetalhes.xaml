@@ -8,7 +8,7 @@
              x:Class="PainelStudioPerboyre.Views.ImagensDetalhes"
              Title="Detalhes">
 
-    
+
     <StackLayout Padding="10,40,10,10" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand">
         <ScrollView>
 

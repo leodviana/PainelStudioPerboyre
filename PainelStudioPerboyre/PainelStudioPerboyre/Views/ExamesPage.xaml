@@ -73,6 +73,9 @@
                     </customControls:ExtendedViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
+            <ListView.Footer>
+                <StackLayout></StackLayout>
+            </ListView.Footer>
         </ListView>
 
 

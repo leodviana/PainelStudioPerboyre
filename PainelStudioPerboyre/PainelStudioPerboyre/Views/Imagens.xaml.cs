@@ -26,7 +26,10 @@ namespace PainelStudioPerboyre.Views
             
         }
 
-       
+        private void ListViewExames_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            ListViewExames.SelectedItem = null;
+        }
     }
 }
 

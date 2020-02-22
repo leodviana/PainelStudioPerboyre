@@ -26,7 +26,7 @@
             </StackLayout>
 
             <ListView x:Name="LstPacientes" 
-            SelectionMode="Single" ItemsSource="{Binding dentistas}" VerticalOptions="FillAndExpand" 
+            SelectionMode="Single" ItemsSource="{Binding dentistas,Mode=TwoWay}" VerticalOptions="FillAndExpand" 
             HasUnevenRows="True" SeparatorVisibility="Default" SeparatorColor="Black" 
             ItemTapped="LstPacientes_ItemTapped" CachingStrategy="RecycleElement" 
             IsPullToRefreshEnabled="True"

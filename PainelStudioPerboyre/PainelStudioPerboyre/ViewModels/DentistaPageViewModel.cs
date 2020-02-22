@@ -92,21 +92,7 @@ namespace PainelStudioPerboyre.ViewModels
 
         private void Filtro()
         {
-            if (DentistaFilter.Trim().Length > 0)
-            {
-                dentistas.Clear();
-                foreach (var item in Lista.Where(x=>x.nome.ToUpper().Contains(DentistaFilter.ToUpper())))
-                {
-                    dentistas.Add(new Dentista()
-                    {
-                        Id = item.Id,
-                        nome = item.nome,
-                        Email = item.Email
-
-
-                    });
-                }
-            }
+            GetDentistas();
         }
         public DentistaPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService, IApiService ApiService) : base(navigationService, pageDialogService)
         {
@@ -114,53 +100,31 @@ namespace PainelStudioPerboyre.ViewModels
             apiService =  ApiService;
             List<Dentista> Lista = new List<Dentista>();
            
-            // pacs = new InfiniteScrollCollection<Dentista>
-            /*{
-                OnLoadMore = async () =>
-                {
-                    isVisible2 = true;
-                    IsRunning2 = true;
-                    
-                    // Ler a proxima pagina
-                    var page = pacs.Count / PageSize;
-
-                    //Busca os itens
-                  //  var items = await _service.GetPessoasAsync(page, PageSize);
-                    Lista = await apiService.getDentistas(page, PageSize);
-                    isVisible2 = false;
-                    IsRunning2 = false;
-
-                    // Itens que serão adicionados
-
-                    return Lista;
-                }
-            };*/
-            isVisible = true;
-            IsRunning = true;
-            var current = Connectivity.NetworkAccess;
-            
-            if (current == NetworkAccess.Internet)
-            {
-                GetDentistas();
-            }
-            else
-            {
-               PageDialogService.DisplayAlertAsync("app", "Por favor Verifique sua conexao!", "Ok");
-                IsRunning = false;
-                isVisible = false;
-                NavigationService.GoBackAsync();
-                return;
-
-            }
-            IsRunning = false;
-            isVisible = false;
+                       
         }
 
         
         private async void GetDentistas()
         {
-                
+            isVisible = true;
+            IsRunning = true;
+            var current = Connectivity.NetworkAccess;
+
+            if (current == NetworkAccess.Internet)
+            {
+                // GetDentistas();
+            }
+            else
+            {
+                await PageDialogService.DisplayAlertAsync("app", "Por favor Verifique sua conexao!", "Ok");
+                IsRunning = false;
+                isVisible = false;
+                await NavigationService.GoBackAsync();
+                return;
+
+            }
             
+
             Lista = await apiService.getDentistas();
             if (Lista == null)
             {
@@ -168,10 +132,32 @@ namespace PainelStudioPerboyre.ViewModels
             }
             else
             {
-                dentistas = new ObservableCollection<Dentista>(Lista);
+                if (DentistaFilter.Trim().Length > 0)
+                {
+                   // dentistas.Clear();
+                    dentistas = new ObservableCollection<Dentista>(Lista.Where(x => x.nome.ToUpper().Contains(DentistaFilter.ToUpper())));
+                    // _dentistas.Where(x => x.nome.ToUpper().Contains(DentistaFilter.ToUpper()));
+                   /* foreach (var item in Lista.Where(x => x.nome.ToUpper().Contains(DentistaFilter.ToUpper())))
+                    {
+                        dentistas.Add(new Dentista()
+                        {
+                            Id = item.Id,
+                            nome = item.nome,
+                            Email = item.Email
+
+
+                        });
+                    }*/
+                }
+                else
+                {
+                    dentistas = new ObservableCollection<Dentista>(Lista);
+                }
             }
-                        
-           
+            IsRunning = false;
+            isVisible = false;
+
+
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)

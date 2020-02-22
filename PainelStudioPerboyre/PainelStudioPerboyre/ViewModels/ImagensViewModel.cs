@@ -23,7 +23,7 @@ namespace PainelStudioPerboyre.ViewModels
     public class ImagensViewModel : ViewModelBase, IInitialize
     {
         public paciente _paciente;
-        
+
         private bool isRunning;
 
         public DelegateCommand zoomCommand { get; set; }
@@ -103,24 +103,25 @@ namespace PainelStudioPerboyre.ViewModels
         }
 
 
-       
+
         public ObservableCollection<ArqImagens> _imgs;
         public ObservableCollection<ArqImagens> imgs
 
-        {
-            get { return _imgs; }
-            set
-            {
-                SetProperty(ref _imgs, value);
+          {
+              get { return _imgs; }
+              set
+              {
+                  SetProperty(ref _imgs, value);
 
-            }
-        }
-        
+              }
+          }
+
+       
 
         public ImagensViewModel(INavigationService navigationService, IPageDialogService pageDialogService, IApiService ApiService) : base(navigationService, pageDialogService)
         {
-             imgs = new ObservableCollection<ArqImagens>();
-            //  Lista = new List<ArqImagens>();
+            // imgs = new ObservableCollection<ArqImagens>();
+            //   Lista = new List<ArqImagens>();
             //_paciente = new paciente();
             apiService = ApiService;
 
@@ -131,12 +132,12 @@ namespace PainelStudioPerboyre.ViewModels
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
         {
-            // throw new NotImplementedException();
+          
         }
 
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
-           
+
         }
 
         private async Task GetExames()
@@ -162,7 +163,7 @@ namespace PainelStudioPerboyre.ViewModels
             }
             try
             {
-                
+
                 var Lista = await apiService.getExames(_paciente);
                 if (Lista == null)
                 {
@@ -176,7 +177,7 @@ namespace PainelStudioPerboyre.ViewModels
                 }
                 if (Lista.Count == 0)
                 {
-                   // await _dialogService.DisplayAlertAsync("app", "Paciente sem exames", "OK");
+                    // await _dialogService.DisplayAlertAsync("app", "Paciente sem exames", "OK");
 
                     IsRunning = false;
                     isVisible = false;
@@ -189,14 +190,6 @@ namespace PainelStudioPerboyre.ViewModels
 
                 imgs = new ObservableCollection<ArqImagens>(Lista);
 
-               /* foreach (var item in Lista)
-                {
-                    imgs.Add(new ArqImagens()
-                    {
-                        nome_arquivo_completo = item.nome_arquivo_completo
-
-                    });
-                }*/
             }
             catch (Exception ex)
             {
@@ -206,6 +199,7 @@ namespace PainelStudioPerboyre.ViewModels
             IsRunning = false;
             isVisible = false;
         }
+            
 
         public override void OnNavigatingTo(INavigationParameters parameters)
         {
@@ -233,24 +227,24 @@ namespace PainelStudioPerboyre.ViewModels
                 {
                     ArqImagens teste = objeto;
 
-                    
+
                     string NomeSelecionado = teste.nome_arquivo_completo;
                     //apaguei para saber se era utilizado 
-                 /*   var ShareMessage = new Plugin.Share.Abstractions.ShareMessage
-                    {
+                    /*   var ShareMessage = new Plugin.Share.Abstractions.ShareMessage
+                       {
 
-                        Text = "Exemplo de como compartilhar textos ou links em Aplicações Xamarin.Forms. / Example of how to share texts or links in Xamarin.Forms Applications.",
-                        Title = "Share",
-                        Url = "https://www.julianocustodio.com"
+                           Text = "Exemplo de como compartilhar textos ou links em Aplicações Xamarin.Forms. / Example of how to share texts or links in Xamarin.Forms Applications.",
+                           Title = "Share",
+                           Url = "https://www.julianocustodio.com"
 
-                    };
+                       };
 
-                    CrossShare.Current.Share(ShareMessage);
-                   /* Share.RequestAsync(new ShareFileRequest
-                    {
-                        Title = Title,
-                        File = new ShareFile(file)
-                    });*/
+                       CrossShare.Current.Share(ShareMessage);
+                      /* Share.RequestAsync(new ShareFileRequest
+                       {
+                           Title = Title,
+                           File = new ShareFile(file)
+                       });*/
                     //showZoom(NomeSelecionado);
                     /*var navigationParams = new NavigationParameters();
                     navigationParams.Add("imagem", NomeSelecionado);
@@ -280,7 +274,7 @@ namespace PainelStudioPerboyre.ViewModels
 
             if (conectionHelper.testaConexao())
             {
-               
+
                 paciente pac = new paciente();
                 pac.photo = nome_arquivo_completo;
                 byte[] imagem = null;
@@ -288,7 +282,7 @@ namespace PainelStudioPerboyre.ViewModels
                 {
                     imagem = await apiService.getExame(pac);
                 }
-                
+
 
                 try
                 {
@@ -298,7 +292,7 @@ namespace PainelStudioPerboyre.ViewModels
                     }
                     else
                     {
-                        
+
                         MemoryStream ms = new MemoryStream(imagem);
                         Xamarin.Forms.DependencyService.Get<IFileService>().SavePicture("ImageName.jpg", ms, "Download");
                         var filePath = Xamarin.Forms.DependencyService.Get<IFileStore>().GetFilePath();
@@ -307,7 +301,7 @@ namespace PainelStudioPerboyre.ViewModels
 
                     }
                 }
-                catch(Exception ex )
+                catch (Exception ex)
                 {
 
                 }
@@ -331,7 +325,7 @@ namespace PainelStudioPerboyre.ViewModels
             Share.RequestAsync(new ShareFileRequest()
             {
                 Title = Title,
-               
+
                 File = new ShareFile(file)
             });
         }
@@ -394,25 +388,20 @@ namespace PainelStudioPerboyre.ViewModels
                     PhotoBrowser.Close();
                     //  _navigationService.GoBackAsync();
                 }
+
             }.Show();
         }
 
-        
+
 
         public async void Initialize(INavigationParameters parameters)
         {
 
             _paciente = (paciente)parameters["paciente"];
             titulo = _paciente.nome;
-            //    if (Lista.Count <= 0)
-            imgs.Clear();
+            
             await GetExames();
-            /* _paciente = (paciente)parameters["paciente"];
-             if (Lista.Count<=0)
-               GetExames();
-             */
-
-            // updateLocation();
+            
         }
     }
 }

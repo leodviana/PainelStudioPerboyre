@@ -5,87 +5,78 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
-             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+           
              xmlns:customControls="clr-namespace:PainelStudioPerboyre.Custom_Controls"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="PainelStudioPerboyre.Views.Imagens"
              Title="Exames"
-             Icon="exames">
-    
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-        <Frame Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Margin="10,200,12,10" IsVisible="{Binding Mostra_label}">
-            <Label  Grid.Row="0" Text="{Binding Mensagem}"  HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" FontSize="20"></Label>
+             Icon="exames" >
+    <FlexLayout Direction="Row"  AlignItems="Center"  WidthRequest="500" JustifyContent="Center">
+        <Frame  IsVisible="{Binding Mostra_label}" WidthRequest="300">
+            <Label   Text="{Binding Mensagem}"   FontSize="20"  HorizontalOptions="Center"></Label>
         </Frame>
-        <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout  VerticalOptions="StartAndExpand" Margin="{OnPlatform Android='0,80, 0,0',iOS='0,100, 0,0'}" Padding="0,250">
+        <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding isVisible}" VerticalOptions="Center">
 
-
-                <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding isVisible}" VerticalOptions="Center">
-
-                </ActivityIndicator>
-                <ListView x:Name="ListViewExames"  SelectionMode="Single" ItemsSource="{Binding imgs}" 
+        </ActivityIndicator>
+        <ListView x:Name="ListViewExames"  SelectionMode="Single" ItemsSource="{Binding imgs}" 
                   HasUnevenRows="True" SeparatorVisibility="Default" SeparatorColor="White"
-                  BackgroundColor="Transparent" IsVisible="{Binding Mostra_listview}" CachingStrategy="RecycleElement">
+                  BackgroundColor="Transparent" IsVisible="{Binding Mostra_listview}" 
+                  ItemTapped="ListViewExames_ItemTapped">
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <customControls:ExtendedViewCell SelectedBackgroundColor="White">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <customControls:ExtendedViewCell SelectedBackgroundColor="White">
 
-                                <ViewCell.View>
+                        <ViewCell.View>
 
-                                    <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Margin="10,12,12,10" >
+                            <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Margin="10,12,12,10" >
 
-                                        <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="5,10" Margin="0,15,0,15">
-                                            <BoxView  Color="LightGray" HeightRequest="2" HorizontalOptions="FillAndExpand" ></BoxView>
-                                            <ffimageloading:CachedImage  CacheDuration="50" RetryCount="3" RetryDelay="600"  HorizontalOptions="CenterAndExpand" DownsampleToViewSize="true"
+                                <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="5,10" Margin="0,15,0,15">
+                                    <BoxView  Color="LightGray" HeightRequest="2" HorizontalOptions="FillAndExpand" ></BoxView>
+                                    <ffimageloading:CachedImage  CacheDuration="50" RetryCount="3" RetryDelay="600"  HorizontalOptions="CenterAndExpand" DownsampleToViewSize="true"
                                    Aspect="AspectFit" HeightRequest="300" WidthRequest="300" Source="{Binding nome_arquivo_completo}" 
                                    LoadingPlaceholder = "Spinner.gif"  ErrorPlaceholder="unnamed.png" DownsampleWidth="100" DownsampleHeight="100" Margin="20,20,20,10" CacheType="Memory">
-                                                <ffimageloading:CachedImage.GestureRecognizers>
-                                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Path=BindingContext.SelecionarItem, Source={x:Reference ListViewExames}}" CommandParameter="{Binding .}">
+                                        <ffimageloading:CachedImage.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Path=BindingContext.SelecionarItem, Source={x:Reference ListViewExames}}" CommandParameter="{Binding .}">
 
-                                                    </TapGestureRecognizer>
-                                                </ffimageloading:CachedImage.GestureRecognizers>
-                                            </ffimageloading:CachedImage>
-                                            <BoxView  Color="LightGray" HeightRequest="2" HorizontalOptions="FillAndExpand"></BoxView>
-                                            <Grid BackgroundColor="White" HeightRequest="30" HorizontalOptions="FillAndExpand">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="30" />
-                                                    <ColumnDefinition Width="1" />
-                                                    <ColumnDefinition Width="30" />
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
-                                                <Image Source="zoom.png"  Grid.Column="0" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" >
-                                                    <Image.GestureRecognizers>
-                                                        <TapGestureRecognizer  Command="{Binding Path=BindingContext.SelecionarItem2, Source={x:Reference ListViewExames}}" CommandParameter="{Binding .}" />
-                                                    </Image.GestureRecognizers>
+                                            </TapGestureRecognizer>
+                                        </ffimageloading:CachedImage.GestureRecognizers>
+                                    </ffimageloading:CachedImage>
+                                    <BoxView  Color="LightGray" HeightRequest="2" HorizontalOptions="FillAndExpand"></BoxView>
+                                    <Grid BackgroundColor="White" HeightRequest="30" HorizontalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30" />
+                                            <ColumnDefinition Width="1" />
+                                            <ColumnDefinition Width="30" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="zoom.png"  Grid.Column="0" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" >
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer  Command="{Binding Path=BindingContext.SelecionarItem2, Source={x:Reference ListViewExames}}" CommandParameter="{Binding .}" />
+                                            </Image.GestureRecognizers>
 
-                                                </Image>
-                                                <Image  Source="share.png" Grid.Column="2"  VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
-                                                    <Image.GestureRecognizers>
-                                                        <TapGestureRecognizer  Command="{Binding Path=BindingContext.SelecionarItem3, Source={x:Reference ListViewExames}}" CommandParameter="{Binding .}" />
-                                                    </Image.GestureRecognizers>
-                                                </Image>
-                                            </Grid>
+                                        </Image>
+                                        <Image  Source="share.png" Grid.Column="2"  VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer  Command="{Binding Path=BindingContext.SelecionarItem3, Source={x:Reference ListViewExames}}" CommandParameter="{Binding .}" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </Grid>
 
-                                        </StackLayout>
-
-
-                                    </Frame>
-
-                                </ViewCell.View>
-                            </customControls:ExtendedViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                </StackLayout>
 
 
+                            </Frame>
 
-            </StackLayout>
-        </Grid>
-   
+                        </ViewCell.View>
+                    </customControls:ExtendedViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        </StackLayout>
+    </FlexLayout>
+
 </ContentPage>
