@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="X5k-f2-b5h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="X5k-f2-b5h">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -13,19 +14,19 @@
                         <viewControllerLayoutGuide type="bottom" id="9ZL-r4-8FZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yd7-JS-zBw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" colorSpace="calibratedRGB" red="1" green="1" blue="1" alpha="1"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="5920" translatesAutoresizingMaskIntoConstraints="NO" image="logofinal.png">
-                                <rect key="frame" x="53" y="201" width="260" height="487"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logofinal.png" translatesAutoresizingMaskIntoConstraints="NO" id="5920">
+                                <rect key="frame" x="57" y="201" width="291" height="411"/>
                             </imageView>
                         </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint id="7510" firstItem="5920" firstAttribute="leading" secondItem="yd7-JS-zBw" secondAttribute="leadingMargin" constant="37"/>
-                            <constraint id="7511" firstItem="5920" firstAttribute="top" secondItem="Y8P-hJ-Z43" secondAttribute="bottom" constant="181"/>
-                            <constraint id="7512" firstAttribute="trailingMargin" secondItem="5920" secondAttribute="trailing" constant="46"/>
-                            <constraint id="7513" firstAttribute="bottom" secondItem="5920" secondAttribute="bottom" constant="124"/>
+                            <constraint firstItem="5920" firstAttribute="leading" secondItem="yd7-JS-zBw" secondAttribute="leadingMargin" constant="37" id="7510"/>
+                            <constraint firstItem="5920" firstAttribute="top" secondItem="Y8P-hJ-Z43" secondAttribute="bottom" constant="181" id="7511"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5920" secondAttribute="trailing" constant="46" id="7512"/>
+                            <constraint firstAttribute="bottom" secondItem="5920" secondAttribute="bottom" constant="124" id="7513"/>
                         </constraints>
                     </view>
                 </viewController>
