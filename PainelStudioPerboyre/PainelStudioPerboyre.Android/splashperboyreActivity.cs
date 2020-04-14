@@ -14,11 +14,11 @@ using Android.Widget;
 namespace PainelStudioPerboyre.Droid
 {
     [Activity(
-         Theme = "@style/Theme.Splash",
-         MainLauncher = true,
-        ScreenOrientation = ScreenOrientation.Locked,
-         NoHistory = true)]
-    public class SplashActivity : Activity
+          Theme = "@style/Theme.Splash",
+          MainLauncher = false,
+         ScreenOrientation = ScreenOrientation.Locked,
+          NoHistory = true)]
+    public class splashperboyreActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
